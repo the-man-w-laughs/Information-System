@@ -1,6 +1,6 @@
 namespace DAL.Models
 {
-    public class PersonalInfo
+    public class PersonalInfoModel
     {
         public int Id { get; set; }
         // Фамилия
@@ -24,6 +24,7 @@ namespace DAL.Models
         // Место рождения
         public string PlaceOfBirth { get; set; } = string.Empty;
         // Город факт. проживания
+        public int? CurrentCityId { get; set; }
         public CityModel? CurrentCity { get; set; } = null;
         // Адрес факт.проживания
         public string CurrentAddress { get; set; } = string.Empty;
@@ -40,10 +41,13 @@ namespace DAL.Models
         // Город прописки
         public CityModel? RegistrationCity { get; set; } = null;
         // Семейное положение
+        public int? MaritalStatusId { get; set; }
         public MaritalStatusModel? MaritalStatus { get; set; } = null;
         // Гражданство
+        public int? CitizenshipId { get; set; }
         public CitizenshipModel? Citizenship { get; set; } = null;
         // Инвалидность
+        public int? DisabilityId { get; set; }
         public DisabilityModel? Disability { get; set; } = null;
         // Пенсионер
         public bool IsPensioner { get; set; }
