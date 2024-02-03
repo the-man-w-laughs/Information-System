@@ -11,8 +11,6 @@ namespace DAL.Models
         public string Patronymic { get; set; } = string.Empty;
         // Дата рождения 
         public DateTime DateOfBirth { get; set; }
-        // Пол
-        public SexModel Sex { get; set; }
         // Серия паспорта
         public string PassportSeries { get; set; } = string.Empty;
         // № паспорта
@@ -41,8 +39,6 @@ namespace DAL.Models
         public string Position { get; set; } = string.Empty;
         // Город прописки
         public CityModel? RegistrationCity { get; set; } = null;
-        // Адрес прописки
-        public string RegistrationAddress { get; set; } = string.Empty;
         // Семейное положение
         public MaritalStatusModel? MaritalStatus { get; set; } = null;
         // Гражданство
@@ -53,8 +49,5 @@ namespace DAL.Models
         public bool IsPensioner { get; set; }
         // Ежемесячный доход
         public decimal MonthlyIncome { get; set; }
-        // Военнообязанный
-        public bool IsMilitaryObligated { get; set; }
     }
-
 }
