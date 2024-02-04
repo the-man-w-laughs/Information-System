@@ -9,9 +9,8 @@ namespace DAL.Configuration
         public void Configure(EntityTypeBuilder<MaritalStatusModel> entity)
         {
             entity.ToTable("MaritalStatuses");
-            entity.HasKey(e => e.Id);
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
             entity.Property(e => e.Name).IsRequired().HasMaxLength(255);
         }
     }
-
 }

@@ -11,9 +11,11 @@ namespace DAL.DBContext
         public DbSet<DisabilityModel> Disabilities { get; set; }
         public DbSet<MaritalStatusModel> MaritalStatuses { get; set; }
         public DbSet<PersonalInfoModel> PersonalInfos { get; set; }
+
         public ClientDBContext(DbContextOptions options)
             : base(options)
         {
+            // Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 

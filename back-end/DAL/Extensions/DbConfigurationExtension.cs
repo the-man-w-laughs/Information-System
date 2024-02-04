@@ -16,6 +16,7 @@ namespace DAL.Extensions
             services.AddDbContext<ClientDBContext>(options =>
             {
                 options.UseMySQL(connectionString);
+                options.UseLazyLoadingProxies();
             });
         }
     }

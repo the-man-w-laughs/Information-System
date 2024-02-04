@@ -16,12 +16,12 @@ public interface IBaseRepository<TEntity>
         Expression<Func<TEntity, bool>> where,
         int offset,
         int limit,
-        CancellationToken cancellationToken
+        CancellationToken cancellationToken = default
     );
-    Task<TEntity?> GetByIdAsync(int id, CancellationToken cancellationToken);
+    Task<TEntity?> GetByIdAsync(int id, CancellationToken cancellationToken = default);
     Task<TEntity?> GetAsync(
         Expression<Func<TEntity, bool>> where,
-        CancellationToken cancellationToken
+        CancellationToken cancellationToken = default
     );
     Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken = default);
     void Update(TEntity entity);

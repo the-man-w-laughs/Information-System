@@ -9,7 +9,7 @@ namespace DAL.Configuration
         public void Configure(EntityTypeBuilder<DisabilityModel> entity)
         {
             entity.ToTable("Disabilities");
-            entity.HasKey(e => e.Id);
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
             entity.Property(e => e.Name).IsRequired().HasMaxLength(255);
         }
     }

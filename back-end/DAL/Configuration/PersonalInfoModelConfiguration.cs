@@ -8,7 +8,7 @@ namespace DAL.Configuration
     {
         public void Configure(EntityTypeBuilder<PersonalInfoModel> entity)
         {
-            entity.HasKey(e => e.Id);
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
 
             entity.Property(e => e.LastName).IsRequired().HasMaxLength(255);
             entity.Property(e => e.FirstName).IsRequired().HasMaxLength(255);
@@ -29,27 +29,32 @@ namespace DAL.Configuration
 
             entity.Property(e => e.MonthlyIncome).HasColumnType("decimal(18,2)");
 
-            entity.HasOne(e => e.CurrentCity)
+            entity
+                .HasOne(e => e.CurrentCity)
                 .WithMany()
                 .HasForeignKey(e => e.CurrentCityId)
                 .IsRequired();
 
-            entity.HasOne(e => e.RegistrationCity)
+            entity
+                .HasOne(e => e.RegistrationCity)
                 .WithMany()
                 .HasForeignKey(e => e.RegistrationCityId)
                 .IsRequired();
 
-            entity.HasOne(e => e.MaritalStatus)
+            entity
+                .HasOne(e => e.MaritalStatus)
                 .WithMany()
                 .HasForeignKey(e => e.MaritalStatusId)
                 .IsRequired();
 
-            entity.HasOne(e => e.Citizenship)
+            entity
+                .HasOne(e => e.Citizenship)
                 .WithMany()
                 .HasForeignKey(e => e.CitizenshipId)
                 .IsRequired();
 
-            entity.HasOne(e => e.Disability)
+            entity
+                .HasOne(e => e.Disability)
                 .WithMany()
                 .HasForeignKey(e => e.DisabilityId)
                 .IsRequired();

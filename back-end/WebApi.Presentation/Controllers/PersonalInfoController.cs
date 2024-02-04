@@ -40,7 +40,7 @@ public class PersonalInfoController : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet(":id")]
+    [HttpGet]
     public async Task<IActionResult> GetAllPersonalInfoAsync(
         CancellationToken cancellationToken = default
     )

@@ -35,52 +35,47 @@ namespace WebApi.Presentation.Middlewares
             switch (exception)
             {
                 case AuthorizationException:
-                    {
-                        context.Response.StatusCode = (int)HttpStatusCode.Forbidden;
-                        var message = string.IsNullOrEmpty(exception.Message)
-                            ? "Access denied"
-                            : exception.Message;
-                        await context.Response.WriteAsync(message);
-                        break;
-                    }
+                {
+                    context.Response.StatusCode = (int)HttpStatusCode.Forbidden;
+                    var message = string.IsNullOrEmpty(exception.Message)
+                        ? "Access denied"
+                        : exception.Message;
+                    await context.Response.WriteAsync(message);
+                    break;
+                }
                 case NotFoundException:
-                    {
-                        context.Response.StatusCode = (int)HttpStatusCode.NotFound;
-                        var message = string.IsNullOrEmpty(exception.Message) ? "Not found" : exception.Message;
-                        await context.Response.WriteAsync(message);
-                        break;
-                    }
+                {
+                    context.Response.StatusCode = (int)HttpStatusCode.NotFound;
+                    var message = string.IsNullOrEmpty(exception.Message)
+                        ? "Not found"
+                        : exception.Message;
+                    await context.Response.WriteAsync(message);
+                    break;
+                }
                 case ForbiddenException:
-                    {
-                        context.Response.StatusCode = (int)HttpStatusCode.Forbidden;
-                        var message = string.IsNullOrEmpty(exception.Message) ? "Forbidden" : exception.Message;
-                        await context.Response.WriteAsync(message);
-                        break;
-                    }
-                case CustomValidationException:
-                    {
-                        context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                        var message = string.IsNullOrEmpty(exception.Message)
-                            ? "Validation error"
-                            : exception.Message;
-                        await context.Response.WriteAsync(message);
-                        break;
-                    }
+                {
+                    context.Response.StatusCode = (int)HttpStatusCode.Forbidden;
+                    var message = string.IsNullOrEmpty(exception.Message)
+                        ? "Forbidden"
+                        : exception.Message;
+                    await context.Response.WriteAsync(message);
+                    break;
+                }
                 case WrongActionException:
-                    {
-                        context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                        var message = string.IsNullOrEmpty(exception.Message)
-                            ? "Wrong Action"
-                            : exception.Message;
-                        await context.Response.WriteAsync(message);
-                        break;
-                    }
+                {
+                    context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    var message = string.IsNullOrEmpty(exception.Message)
+                        ? "Wrong Action"
+                        : exception.Message;
+                    await context.Response.WriteAsync(message);
+                    break;
+                }
                 default:
-                    {
-                        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                        await context.Response.WriteAsync("Internal server error");
-                        break;
-                    }
+                {
+                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    await context.Response.WriteAsync("Internal server error");
+                    break;
+                }
             }
         }
     }
