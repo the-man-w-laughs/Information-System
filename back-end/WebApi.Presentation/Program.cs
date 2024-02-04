@@ -2,6 +2,7 @@ using DAL.DBContext;
 using DAL.Extensions;
 using BLL.Extensions;
 using WebApi.Presentation.Extensions;
+using WebApi.Presentation.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
@@ -16,6 +17,7 @@ builder.Services.AddCustomControllers();
 var app = builder.Build();
 
 app.InitializeDatabase<ClientDBContext>();
+app.UseMiddleware<ExceptionMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
