@@ -1,4 +1,5 @@
 using BLL.Contracts;
+using BLL.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Presentation.Controllers;
@@ -21,6 +22,7 @@ public class MaritalStatusController : ControllerBase
     /// <param name="cancellationToken">Cancellation token (optional).</param>
     /// <returns>An IActionResult containing the list of all marital statuses.</returns>
     [HttpGet]
+    [ProducesResponseType(typeof(List<MaritalStatusResponseDto>), 200)]
     public async Task<IActionResult> GetAllMaritalStatusAsync(
         CancellationToken cancellationToken = default
     )

@@ -23,6 +23,7 @@ public class PersonalInfoController : ControllerBase
     /// <param name="cancellationToken">Cancellation token (optional).</param>
     /// <returns>The result of the creation operation.</returns>
     [HttpPost]
+    [ProducesResponseType(typeof(PersonalInfoResponseDto), 200)]
     public async Task<IActionResult> CreatePersonalInfoAsync(
         [FromBody] PersonalInfoRequestDto personalInfoRequestDto,
         CancellationToken cancellationToken = default
@@ -43,6 +44,7 @@ public class PersonalInfoController : ControllerBase
     /// <param name="cancellationToken">Cancellation token (optional).</param>
     /// <returns>The personal information with the specified ID.</returns>
     [HttpGet("{id}")]
+    [ProducesResponseType(typeof(PersonalInfoResponseDto), 200)]
     public async Task<IActionResult> GetPersonalInfoByIdAsync(
         [FromQuery] int id,
         CancellationToken cancellationToken = default
@@ -59,6 +61,7 @@ public class PersonalInfoController : ControllerBase
     /// <param name="cancellationToken">Cancellation token (optional).</param>
     /// <returns>All personal information available.</returns>
     [HttpGet]
+    [ProducesResponseType(typeof(List<PersonalInfoResponseDto>), 200)]
     public async Task<IActionResult> GetAllPersonalInfoAsync(
         CancellationToken cancellationToken = default
     )
@@ -76,6 +79,7 @@ public class PersonalInfoController : ControllerBase
     /// <param name="cancellationToken">Cancellation token (optional).</param>
     /// <returns>The result of the update operation.</returns>
     [HttpPut("{id}")]
+    [ProducesResponseType(typeof(PersonalInfoResponseDto), 200)]
     public async Task<IActionResult> UpdatePersonalInfoByIdAsync(
         [FromQuery] int id,
         [FromBody] PersonalInfoRequestDto personalInfoRequestDto,
@@ -98,6 +102,7 @@ public class PersonalInfoController : ControllerBase
     /// <param name="cancellationToken">Cancellation token (optional).</param>
     /// <returns>The result of the deletion operation.</returns>
     [HttpDelete("{id}")]
+    [ProducesResponseType(typeof(PersonalInfoResponseDto), 200)]
     public async Task<IActionResult> DeletePersonalInfoByIdAsync(
         [FromQuery] int id,
         CancellationToken cancellationToken = default

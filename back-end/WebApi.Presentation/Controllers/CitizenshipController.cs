@@ -1,4 +1,5 @@
 using BLL.Contracts;
+using BLL.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Presentation.Controllers;
@@ -21,6 +22,7 @@ public class CitizenshipController : ControllerBase
     /// <param name="cancellationToken">Cancellation token (optional).</param>
     /// <returns>All citizenship information available.</returns>
     [HttpGet]
+    [ProducesResponseType(typeof(List<CitizenshipResponseDto>), 200)]
     public async Task<IActionResult> GetAllCitizenshipAsync(
         CancellationToken cancellationToken = default
     )
