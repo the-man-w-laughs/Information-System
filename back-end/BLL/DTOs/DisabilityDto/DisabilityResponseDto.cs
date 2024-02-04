@@ -1,6 +1,6 @@
-namespace DAL.Models
+namespace BLL.DTOs
 {
-    public class DisabilityModel
+    public class DisabilityResponseDto
     {
 
         public int Id { get; set; }

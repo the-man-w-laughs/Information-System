@@ -1,5 +1,6 @@
 using DAL.DBContext;
 using DAL.Extensions;
+using BLL.Extensions;
 using WebApi.Presentation.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.RegisterDLLDependencies(config);
+builder.Services.RegisterBLLDependencies(config);
 builder.Services.AddCustomControllers();
 
 var app = builder.Build();

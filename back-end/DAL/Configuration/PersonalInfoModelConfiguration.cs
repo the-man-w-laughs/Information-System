@@ -34,6 +34,11 @@ namespace DAL.Configuration
                 .HasForeignKey(e => e.CurrentCityId)
                 .IsRequired();
 
+            entity.HasOne(e => e.RegistrationCity)
+                .WithMany()
+                .HasForeignKey(e => e.RegistrationCityId)
+                .IsRequired();
+
             entity.HasOne(e => e.MaritalStatus)
                 .WithMany()
                 .HasForeignKey(e => e.MaritalStatusId)

@@ -1,6 +1,6 @@
-namespace DAL.Models
+namespace BLL.DTOs
 {
-    public class PersonalInfoModel
+    public class PersonalInfoResponseDto
     {
         public int Id { get; set; }
         // Фамилия
@@ -25,7 +25,7 @@ namespace DAL.Models
         public string PlaceOfBirth { get; set; } = string.Empty;
         // Город факт. проживания
         public int? CurrentCityId { get; set; }
-        public CityModel? CurrentCity { get; set; } = null;
+        public string? CurrentCity { get; set; } = null;
         // Адрес факт.проживания
         public string CurrentAddress { get; set; } = string.Empty;
         // Телефон дом
@@ -38,18 +38,18 @@ namespace DAL.Models
         public string Workplace { get; set; } = string.Empty;
         // Должность
         public string Position { get; set; } = string.Empty;
-        // Город прописки
+        // Город прописки        
         public int? RegistrationCityId { get; set; }
-        public CityModel? RegistrationCity { get; set; } = null;
+        public string? RegistrationCity { get; set; } = null;
         // Семейное положение
         public int? MaritalStatusId { get; set; }
-        public MaritalStatusModel? MaritalStatus { get; set; } = null;
+        public string? MaritalStatus { get; set; } = null;
         // Гражданство
         public int? CitizenshipId { get; set; }
-        public CitizenshipModel? Citizenship { get; set; } = null;
+        public string? Citizenship { get; set; } = null;
         // Инвалидность
         public int? DisabilityId { get; set; }
-        public DisabilityModel? Disability { get; set; } = null;
+        public string? Disability { get; set; } = null;
         // Пенсионер
         public bool IsPensioner { get; set; }
         // Ежемесячный доход
