@@ -1,15 +1,20 @@
-var builder = WebApplication.CreateBuilder(args);
+using DAL.DBContext;
+using DAL.Extensions;
+using WebApi.Presentation.Extensions;
 
-// Add services to the container.
+var builder = WebApplication.CreateBuilder(args);
+var config = builder.Configuration;
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.RegisterDLLDependencies(config);
+builder.Services.AddCustomControllers();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+app.InitializeDatabase<ClientDBContext>();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -17,9 +22,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
