@@ -10,11 +10,18 @@ public class PersonalInfoController : ControllerBase
 {
     private readonly IPersonalInfoService _personalInfoService;
 
+    // Constructor with dependency injection
     public PersonalInfoController(IPersonalInfoService personalInfoService)
     {
         _personalInfoService = personalInfoService;
     }
 
+    /// <summary>
+    /// Creates personal information.
+    /// </summary>
+    /// <param name="personalInfoRequestDto">The personal information to create.</param>
+    /// <param name="cancellationToken">Cancellation token (optional).</param>
+    /// <returns>The result of the creation operation.</returns>
     [HttpPost]
     public async Task<IActionResult> CreatePersonalInfoAsync(
         [FromBody] PersonalInfoRequestDto personalInfoRequestDto,
@@ -29,7 +36,13 @@ public class PersonalInfoController : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet(":id")]
+    /// <summary>
+    /// Gets personal information by ID.
+    /// </summary>
+    /// <param name="id">The ID of the personal information to retrieve.</param>
+    /// <param name="cancellationToken">Cancellation token (optional).</param>
+    /// <returns>The personal information with the specified ID.</returns>
+    [HttpGet("{id}")]
     public async Task<IActionResult> GetPersonalInfoByIdAsync(
         [FromQuery] int id,
         CancellationToken cancellationToken = default
@@ -40,6 +53,11 @@ public class PersonalInfoController : ControllerBase
         return Ok(result);
     }
 
+    /// <summary>
+    /// Gets all personal information.
+    /// </summary>
+    /// <param name="cancellationToken">Cancellation token (optional).</param>
+    /// <returns>All personal information available.</returns>
     [HttpGet]
     public async Task<IActionResult> GetAllPersonalInfoAsync(
         CancellationToken cancellationToken = default
@@ -50,7 +68,14 @@ public class PersonalInfoController : ControllerBase
         return Ok(result);
     }
 
-    [HttpPut(":id")]
+    /// <summary>
+    /// Updates personal information by ID.
+    /// </summary>
+    /// <param name="id">The ID of the personal information to update.</param>
+    /// <param name="personalInfoRequestDto">The updated personal information.</param>
+    /// <param name="cancellationToken">Cancellation token (optional).</param>
+    /// <returns>The result of the update operation.</returns>
+    [HttpPut("{id}")]
     public async Task<IActionResult> UpdatePersonalInfoByIdAsync(
         [FromQuery] int id,
         [FromBody] PersonalInfoRequestDto personalInfoRequestDto,
@@ -66,7 +91,13 @@ public class PersonalInfoController : ControllerBase
         return Ok(result);
     }
 
-    [HttpDelete(":id")]
+    /// <summary>
+    /// Deletes personal information by ID.
+    /// </summary>
+    /// <param name="id">The ID of the personal information to delete.</param>
+    /// <param name="cancellationToken">Cancellation token (optional).</param>
+    /// <returns>The result of the deletion operation.</returns>
+    [HttpDelete("{id}")]
     public async Task<IActionResult> DeletePersonalInfoByIdAsync(
         [FromQuery] int id,
         CancellationToken cancellationToken = default

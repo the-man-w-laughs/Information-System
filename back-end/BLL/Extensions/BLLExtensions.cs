@@ -13,6 +13,10 @@ namespace BLL.Extensions
         )
         {
             services.AddScoped<IPersonalInfoService, PersonalInfoService>();
+            services.AddScoped<ICitizenshipService, CitizenshipService>();
+            services.AddScoped<ICityService, CityService>();
+            services.AddScoped<IDisabilityService, DisabilityService>();
+            services.AddScoped<IMaritalStatusService, MaritalStatusService>();
         }
     }
 }
