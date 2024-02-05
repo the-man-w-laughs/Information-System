@@ -73,7 +73,10 @@ namespace WebApi.Presentation.Middlewares
                 default:
                 {
                     context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                    await context.Response.WriteAsync("Internal server error");
+                    var message = string.IsNullOrEmpty(exception.Message)
+                        ? "Internal server error"
+                        : exception.Message;
+                    await context.Response.WriteAsync(message);
                     break;
                 }
             }

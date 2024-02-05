@@ -4,34 +4,25 @@ using BLL.DTOs;
 using BLL.Exceptions;
 using DAL.Contracts;
 using DAL.Models;
-using Shared.Repository.Sql;
+using FluentValidation;
 
 namespace BLL.Services
 {
     public class PersonalInfoService : IPersonalInfoService
     {
         private readonly IPersonalInfoModelRepository _personalInfoModelRepository;
-        private readonly ICitizenshipModelRepository _citizenshipModelRepository;
-        private readonly ICityModelRepository _cityModelRepository;
-        private readonly IDisabilityModelRepository _disabilityModelRepository;
-        private readonly IMaritalStatusModelRepository _maritalStatusModelRepository;
         private readonly IMapper _mapper;
+        private readonly IValidator<PersonalInfoRequestDto> _validator;
 
         public PersonalInfoService(
             IPersonalInfoModelRepository personalInfoModelRepository,
-            ICitizenshipModelRepository citizenshipModelRepository,
-            ICityModelRepository cityModelRepository,
-            IDisabilityModelRepository disabilityModelRepository,
-            IMaritalStatusModelRepository maritalStatusModelRepository,
-            IMapper mapper
+            IMapper mapper,
+            IValidator<PersonalInfoRequestDto> validator
         )
         {
             _personalInfoModelRepository = personalInfoModelRepository;
-            _citizenshipModelRepository = citizenshipModelRepository;
-            _cityModelRepository = cityModelRepository;
-            _disabilityModelRepository = disabilityModelRepository;
-            _maritalStatusModelRepository = maritalStatusModelRepository;
             _mapper = mapper;
+            _validator = validator;
         }
 
         public async Task<PersonalInfoResponseDto> CreatePersonalInfoAsync(
@@ -39,7 +30,19 @@ namespace BLL.Services
             CancellationToken cancellationToken = default
         )
         {
-            await ValidateRelatedEntities(personalInfoRequestDto, cancellationToken);
+            await _validator.ValidateAndThrowAsync(personalInfoRequestDto);
+
+            await EnsureUniquePassportNumberAsync(
+                personalInfoRequestDto.PassportNumber,
+                null,
+                cancellationToken
+            );
+
+            await EnsureUniqueIdentificationNumberAsync(
+                personalInfoRequestDto.IdentificationNumber,
+                null,
+                cancellationToken
+            );
 
             var personalInfoToCreate = _mapper.Map<PersonalInfoModel>(personalInfoRequestDto);
             var createdPersonalInfo = await _personalInfoModelRepository.AddAsync(
@@ -47,6 +50,10 @@ namespace BLL.Services
                 cancellationToken
             );
             await _personalInfoModelRepository.SaveAsync(cancellationToken);
+            createdPersonalInfo = await _personalInfoModelRepository.GetByIdAsync(
+                createdPersonalInfo.Id,
+                cancellationToken
+            );
 
             var result = _mapper.Map<PersonalInfoResponseDto>(createdPersonalInfo);
 
@@ -77,7 +84,9 @@ namespace BLL.Services
 
             if (personalInfo == null)
             {
-                throw new NotFoundException($"PersonalInfo with ID {id} not found.");
+                throw new NotFoundException(
+                    $"Персональная информация с идентификатором {id} не найдена."
+                );
             }
 
             var result = _mapper.Map<PersonalInfoResponseDto>(personalInfo);
@@ -91,6 +100,8 @@ namespace BLL.Services
             CancellationToken cancellationToken = default
         )
         {
+            await _validator.ValidateAndThrowAsync(personalInfoRequestDto);
+
             var existingPersonalInfo = await _personalInfoModelRepository.GetByIdAsync(
                 id,
                 cancellationToken
@@ -98,10 +109,21 @@ namespace BLL.Services
 
             if (existingPersonalInfo == null)
             {
-                throw new NotFoundException($"PersonalInfo with ID {id} not found");
+                throw new NotFoundException(
+                    $"Персональная информация с идентификатором {id} не найдена."
+                );
             }
 
-            await ValidateRelatedEntities(personalInfoRequestDto, cancellationToken);
+            await EnsureUniquePassportNumberAsync(
+                personalInfoRequestDto.PassportNumber,
+                existingPersonalInfo.Id,
+                cancellationToken
+            );
+            await EnsureUniqueIdentificationNumberAsync(
+                personalInfoRequestDto.IdentificationNumber,
+                id,
+                cancellationToken
+            );
 
             _mapper.Map(personalInfoRequestDto, existingPersonalInfo);
 
@@ -127,7 +149,9 @@ namespace BLL.Services
 
             if (personalInfoToDelete == null)
             {
-                throw new NotFoundException($"PersonalInfo with ID {id} not found");
+                throw new NotFoundException(
+                    $"Персональная информация с идентификатором {id} не найдена."
+                );
             }
 
             var result = _mapper.Map<PersonalInfoResponseDto>(personalInfoToDelete);
@@ -135,65 +159,42 @@ namespace BLL.Services
             return result;
         }
 
-        private async Task ValidateEntityAsync<T>(
-            IBaseRepository<T> repository,
-            int entityId,
-            string entityName,
+        private async Task EnsureUniquePassportNumberAsync(
+            string? passportNumber,
+            int? currentUserId,
             CancellationToken cancellationToken = default
         )
-            where T : class, new()
         {
-            var entity = await repository.GetByIdAsync(entityId, cancellationToken);
-            if (entity == null)
+            var existingUser = await _personalInfoModelRepository.GetAsync(
+                personalInfo => personalInfo.PassportNumber == passportNumber,
+                cancellationToken
+            );
+
+            if (existingUser != null && existingUser.Id != currentUserId)
             {
-                throw new NotFoundException($"{entityName} with ID {entityId} not found.");
+                throw new WrongActionException(
+                    $"Пользователь с номером паспорта '{passportNumber}' уже существует."
+                );
             }
         }
 
-        private async Task ValidateRelatedEntities(
-            PersonalInfoRequestDto personalInfoRequestDto,
+        private async Task EnsureUniqueIdentificationNumberAsync(
+            string? identificationNumber,
+            int? currentUserId,
             CancellationToken cancellationToken = default
         )
         {
-            // Validate Disability
-            await ValidateEntityAsync(
-                _disabilityModelRepository,
-                personalInfoRequestDto.DisabilityId,
-                "Disability",
+            var existingUser = await _personalInfoModelRepository.GetAsync(
+                personalInfo => personalInfo.IdentificationNumber == identificationNumber,
                 cancellationToken
             );
 
-            // Validate Citizenship
-            await ValidateEntityAsync(
-                _citizenshipModelRepository,
-                personalInfoRequestDto.CitizenshipId,
-                "Citizenship",
-                cancellationToken
-            );
-
-            // Validate Current City
-            await ValidateEntityAsync(
-                _cityModelRepository,
-                personalInfoRequestDto.CurrentCityId,
-                "Current city",
-                cancellationToken
-            );
-
-            // Validate Registration City
-            await ValidateEntityAsync(
-                _cityModelRepository,
-                personalInfoRequestDto.RegistrationCityId,
-                "Registration city",
-                cancellationToken
-            );
-
-            // Validate Marital Status
-            await ValidateEntityAsync(
-                _maritalStatusModelRepository,
-                personalInfoRequestDto.MaritalStatusId,
-                "Marital status",
-                cancellationToken
-            );
+            if (existingUser != null && existingUser.Id != currentUserId)
+            {
+                throw new WrongActionException(
+                    $"Пользователь с идентификационным номером '{identificationNumber}' уже существует."
+                );
+            }
         }
     }
 }

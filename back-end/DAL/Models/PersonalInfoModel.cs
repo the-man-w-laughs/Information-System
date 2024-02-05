@@ -42,19 +42,19 @@ namespace DAL.Models
         public string CurrentAddress { get; set; } = string.Empty;
 
         // Телефон дом
-        public string HomePhone { get; set; } = string.Empty;
+        public string? HomePhone { get; set; }
 
         // Телефон моб
-        public string MobilePhone { get; set; } = string.Empty;
+        public string? MobilePhone { get; set; }
 
         // E-mail
-        public string Email { get; set; } = string.Empty;
+        public string? Email { get; set; }
 
         // Место работы
-        public string Workplace { get; set; } = string.Empty;
+        public string? Workplace { get; set; }
 
         // Должность
-        public string Position { get; set; } = string.Empty;
+        public string? Position { get; set; }
 
         // Город прописки
         public int RegistrationCityId { get; set; }
@@ -76,6 +76,6 @@ namespace DAL.Models
         public bool IsPensioner { get; set; }
 
         // Ежемесячный доход
-        public decimal MonthlyIncome { get; set; }
+        public decimal? MonthlyIncome { get; set; }
     }
 }

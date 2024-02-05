@@ -14,7 +14,6 @@ builder.Services.RegisterDLLDependencies(config);
 builder.Services.RegisterBLLDependencies(config);
 builder.Services.AddSwaggerWithXmlComments();
 builder.Services.ConfigureCors(config);
-
 builder.Services.AddCustomControllers();
 builder.Services.RegisterAutomapperProfiles();
 
