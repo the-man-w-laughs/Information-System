@@ -13,12 +13,14 @@ builder.Services.AddSwaggerGen();
 builder.Services.RegisterDLLDependencies(config);
 builder.Services.RegisterBLLDependencies(config);
 builder.Services.AddSwaggerWithXmlComments();
+builder.Services.ConfigureCors(config);
 
 builder.Services.AddCustomControllers();
 builder.Services.RegisterAutomapperProfiles();
 
 var app = builder.Build();
 
+app.UseCors();
 app.InitializeDatabase<ClientDBContext>();
 app.UseMiddleware<ExceptionMiddleware>();
 

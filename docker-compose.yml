@@ -1,9 +1,8 @@
-# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP.NET Core service.
-
 version: '3.4'
 
 services:
   webapipresentation:
+    container_name: webapipresentation-container
     image: webapipresentation
     build:
       context: .
@@ -19,7 +18,7 @@ services:
     restart: always
 
   mysql:
-    container_name: mysql
+    container_name: mysql-container
     image: mysql:latest
     environment:
       MYSQL_DATABASE: 'information-system-db'
@@ -30,3 +29,14 @@ services:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       timeout: 20s
       retries: 10
+
+  frontend:
+    container_name: frontend-container
+    image: reactfrontend
+    build:
+      context: front-end
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: development
+    ports:
+      - 3000:3000

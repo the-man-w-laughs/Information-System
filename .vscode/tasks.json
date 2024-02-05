@@ -73,20 +73,38 @@
     {
       "type": "docker-run",
       "label": "docker-run: debug",
-      "dependsOn": ["docker-build: debug"],
-      "dockerRun": {},
-      "netCore": {
-        "appProject": "${workspaceFolder}/back-end/WebApi.Presentation/WebApi.Presentation.csproj",
+      "dependsOn": ["docker-build"],
+      "dockerRun": {
+        "env": {
+          "DEBUG": "*",
+          "NODE_ENV": "development"
+        }
+      },
+      "node": {
+        "package": "${workspaceFolder}/front-end/package.json",
         "enableDebugging": true
       }
     },
     {
       "type": "docker-run",
       "label": "docker-run: release",
-      "dependsOn": ["docker-build: release"],
-      "dockerRun": {},
-      "netCore": {
-        "appProject": "${workspaceFolder}/back-end/WebApi.Presentation/WebApi.Presentation.csproj"
+      "dependsOn": ["docker-build"],
+      "platform": "node",
+      "node": {
+        "package": "${workspaceFolder}/front-end/package.json"
+      }
+    },
+    {
+      "type": "docker-build",
+      "label": "docker-build",
+      "platform": "node",
+      "dockerBuild": {
+        "dockerfile": "${workspaceFolder}/front-end/Dockerfile",
+        "context": "${workspaceFolder}/front-end",
+        "pull": true
+      },
+      "node": {
+        "package": "${workspaceFolder}/front-end/package.json"
       }
     }
   ]
