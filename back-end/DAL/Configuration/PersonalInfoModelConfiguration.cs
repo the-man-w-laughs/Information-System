@@ -21,13 +21,13 @@ namespace DAL.Configuration
             entity.Property(e => e.IdentificationNumber).IsRequired().HasMaxLength(20);
             entity.Property(e => e.PlaceOfBirth).IsRequired().HasMaxLength(255);
             entity.Property(e => e.CurrentAddress).IsRequired().HasMaxLength(500);
-            entity.Property(e => e.HomePhone).HasMaxLength(20);
-            entity.Property(e => e.MobilePhone).HasMaxLength(20);
-            entity.Property(e => e.Email).HasMaxLength(255);
-            entity.Property(e => e.Workplace).HasMaxLength(255);
-            entity.Property(e => e.Position).HasMaxLength(255);
-
-            entity.Property(e => e.MonthlyIncome).HasColumnType("decimal(18,2)");
+            entity.Property(e => e.IsPensioner).IsRequired();
+            entity.Property(e => e.HomePhone).IsRequired(false).HasMaxLength(20);
+            entity.Property(e => e.MobilePhone).IsRequired(false).HasMaxLength(20);
+            entity.Property(e => e.Email).IsRequired(false).HasMaxLength(255);
+            entity.Property(e => e.Workplace).IsRequired(false).HasMaxLength(255);
+            entity.Property(e => e.Position).IsRequired(false).HasMaxLength(255);
+            entity.Property(e => e.MonthlyIncome).IsRequired(false).HasColumnType("decimal(18,2)");
 
             entity
                 .HasOne(e => e.CurrentCity)

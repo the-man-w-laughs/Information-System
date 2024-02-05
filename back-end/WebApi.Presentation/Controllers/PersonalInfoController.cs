@@ -46,7 +46,7 @@ public class PersonalInfoController : ControllerBase
     [HttpGet("{id}")]
     [ProducesResponseType(typeof(PersonalInfoResponseDto), 200)]
     public async Task<IActionResult> GetPersonalInfoByIdAsync(
-        [FromQuery] int id,
+        [FromRoute] int id,
         CancellationToken cancellationToken = default
     )
     {
@@ -81,7 +81,7 @@ public class PersonalInfoController : ControllerBase
     [HttpPut("{id}")]
     [ProducesResponseType(typeof(PersonalInfoResponseDto), 200)]
     public async Task<IActionResult> UpdatePersonalInfoByIdAsync(
-        [FromQuery] int id,
+        [FromRoute] int id,
         [FromBody] PersonalInfoRequestDto personalInfoRequestDto,
         CancellationToken cancellationToken = default
     )
@@ -104,7 +104,7 @@ public class PersonalInfoController : ControllerBase
     [HttpDelete("{id}")]
     [ProducesResponseType(typeof(PersonalInfoResponseDto), 200)]
     public async Task<IActionResult> DeletePersonalInfoByIdAsync(
-        [FromQuery] int id,
+        [FromRoute] int id,
         CancellationToken cancellationToken = default
     )
     {

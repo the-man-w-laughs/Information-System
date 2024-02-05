@@ -1,5 +1,7 @@
 using BLL.Contracts;
 using BLL.Services;
+using BLL.Validators;
+using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,6 +19,8 @@ namespace BLL.Extensions
             services.AddScoped<ICityService, CityService>();
             services.AddScoped<IDisabilityService, DisabilityService>();
             services.AddScoped<IMaritalStatusService, MaritalStatusService>();
+
+            services.AddValidatorsFromAssemblyContaining<PersonalInfoRequestDtoValidator>();
         }
     }
 }
