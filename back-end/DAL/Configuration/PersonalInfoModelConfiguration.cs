@@ -21,6 +21,7 @@ namespace DAL.Configuration
             entity.Property(e => e.IdentificationNumber).IsRequired().HasMaxLength(20);
             entity.Property(e => e.PlaceOfBirth).IsRequired().HasMaxLength(255);
             entity.Property(e => e.CurrentAddress).IsRequired().HasMaxLength(500);
+            entity.Property(e => e.IsPensioner).IsRequired();
             entity.Property(e => e.HomePhone).IsRequired(false).HasMaxLength(20);
             entity.Property(e => e.MobilePhone).IsRequired(false).HasMaxLength(20);
             entity.Property(e => e.Email).IsRequired(false).HasMaxLength(255);
