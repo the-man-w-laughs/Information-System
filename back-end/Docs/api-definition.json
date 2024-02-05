@@ -243,21 +243,13 @@
         "parameters": [
           {
             "name": "id",
-            "in": "query",
-            "description": "The ID of the personal information to retrieve.",
-            "style": "form",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "id",
             "in": "path",
+            "description": "The ID of the personal information to retrieve.",
             "required": true,
             "style": "simple",
             "schema": {
-              "type": "string"
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],
@@ -290,21 +282,13 @@
         "parameters": [
           {
             "name": "id",
-            "in": "query",
-            "description": "The ID of the personal information to update.",
-            "style": "form",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "id",
             "in": "path",
+            "description": "The ID of the personal information to update.",
             "required": true,
             "style": "simple",
             "schema": {
-              "type": "string"
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],
@@ -357,21 +341,13 @@
         "parameters": [
           {
             "name": "id",
-            "in": "query",
-            "description": "The ID of the personal information to delete.",
-            "style": "form",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "id",
             "in": "path",
+            "description": "The ID of the personal information to delete.",
             "required": true,
             "style": "simple",
             "schema": {
-              "type": "string"
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],
@@ -475,7 +451,8 @@
           },
           "dateOfBirth": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "passportSeries": {
             "type": "string",
@@ -491,7 +468,8 @@
           },
           "passportIssueDate": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "identificationNumber": {
             "type": "string",
@@ -503,7 +481,8 @@
           },
           "currentCityId": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "currentAddress": {
             "type": "string",
@@ -531,26 +510,32 @@
           },
           "registrationCityId": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "maritalStatusId": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "citizenshipId": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "disabilityId": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "isPensioner": {
-            "type": "boolean"
+            "type": "boolean",
+            "nullable": true
           },
           "monthlyIncome": {
             "type": "number",
-            "format": "double"
+            "format": "double",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -676,7 +661,8 @@
           },
           "monthlyIncome": {
             "type": "number",
-            "format": "double"
+            "format": "double",
+            "nullable": true
           }
         },
         "additionalProperties": false
