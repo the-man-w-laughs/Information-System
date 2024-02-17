@@ -28,10 +28,12 @@ namespace BLL.Validators
             RuleFor(x => x.PassportNumber)
                 .NotEmpty()
                 .WithMessage("Номер паспорта обязателен.")
-                .Matches(@"^(AB|BM|HB|KH|MP|MO|KB|PP|SP|DP)\d{7}$")
-                .WithMessage(
-                    "Неверный формат номера паспорта. Должен начинаться с двух букв и следовать за ними семь цифр."
-                );
+                // .Matches(@"^(AB|BM|HB|KH|MP|MO|KB|PP|SP|DP)\d{7}$")
+                .Matches(@"^\d{7}$")
+                // .WithMessage(
+                //     "Неверный формат номера паспорта. Должен начинаться с двух букв и следовать за ними семь цифр."
+                // )
+                .WithMessage("Неверный формат номера паспорта. Должен состоять из 7 цифр.");
 
             RuleFor(x => x.IdentificationNumber)
                 .NotEmpty()

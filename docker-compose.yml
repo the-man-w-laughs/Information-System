@@ -24,7 +24,7 @@ services:
       MYSQL_DATABASE: 'information-system-db'
       MYSQL_ROOT_PASSWORD: 'root'
     ports:
-      - "3306:3306"
+      - "3307:3307"
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       timeout: 20s
@@ -35,8 +35,12 @@ services:
     image: reactfrontend
     build:
       context: front-end
-      dockerfile: ./Dockerfile
-    environment:
-      NODE_ENV: development
+      dockerfile: ./Dockerfile    
     ports:
       - 3000:3000
+    volumes:
+      - ./front-end:/front-end:delegated
+      - ./front-end/node_modules:/front-end/node_modules
+    environment:
+      NODE_ENV: development
+       - CHOKIDAR_USEPOLLING=true
