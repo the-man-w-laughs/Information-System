@@ -1,0 +1,84 @@
+﻿@model WebApplication.Models.ViewModels.Client
+
+@{
+    ViewBag.Title = "Удалить клиента";
+}
+
+<h2 style="color: white;">Удалить клиента</h2>
+
+<h3 style="color: white;">Вы точно хотите удалить клиента?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal" style="color: white;">
+        <dt>
+            @Html.DisplayNameFor(model => model.Surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patronymic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patronymic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PassportSeries)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PassportSeries)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PassportNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PassportNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdentificationNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdentificationNumber)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Удалить" class="btn" style="background-color: #01b075; color: white;"/>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Вернуться к списку", "Index")
+    </div>
+</div>

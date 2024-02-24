@@ -1,0 +1,46 @@
+﻿@model IEnumerable<WebApplication.Models.ViewModels.Deposit>
+
+@{
+    ViewBag.Title = "Договоры";
+}
+
+<h2 style="color: white;">Договоры</h2>
+
+<p>
+    @Html.ActionLink("Создать новый договор ", "Create") | @Html.ActionLink(" Перейти на страницу депозитных планов", "Index", "PlanOfDeposit")
+</p>
+<table class="table" style="background-color: #01b075;">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PlanOfDeposit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Client)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        string style = item.Amount == 0 ? "grey" : "";
+        <tr style="background-color: @style">
+            <td>
+                @Html.DisplayFor(modelItem => item.PlanOfDeposit.Name)
+            </td>
+            <td>
+                @Html.ActionLink($"{item.Client.Surname} {item.Client.Name} {item.Client.Patronymic}", "Details", "Client", new {id = item.Client.Id}, new {})
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.ActionLink("Детали", "Details", new {depositId = item.Id})
+            </td>
+        </tr>
+    }
+</table>
+

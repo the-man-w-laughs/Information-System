@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Банк";
+}
+
+<h2 style="color: white;">Банк</h2>
+<div class="row" style="color: white;">
+    <div class="col-md-6">
+        <h4 >Счета</h4>
+        <div class="col-md-12">
+            <p>
+                <a class="btn" style="background-color: #01b075; color: white;" href="@Url.Action("AccountReport")">Перейти на страницу счетов</a>
+            </p>
+        </div>
+    </div>
+    @*<div class="col-md-6">
+        <h2>Transaction</h2>
+        <div class="col-md-6">
+            <p>
+                <a class="btn btn-default" href="@Url.Action("DayTransactionsReport")">Go to this this day report page &raquo;</a>
+            </p>
+        </div>
+        <div class="col-md-6">
+            <p>
+                <a class="btn btn-default" href="@Url.Action("PreviousDayTransactionsReport")">Go to previous day report page &raquo;</a>
+            </p>
+        </div>
+    </div>*@
+</div>
+
+<div class="row" style="color: white;">
+    <div class="col-md-6">
+        <h4>Операции закрытия</h4>
+        <div class="col-md-7">
+            @using (Html.BeginForm("CloseBankDay", "Bank"))
+            {
+                <button type="submit" class="btn" style="background-color: #01b075; color: white;">Закрыть банковский день</button>
+            }
+        </div>
+        <div class="col-md-7">
+            @using (Html.BeginForm("CloseBankMonth", "Bank"))
+            {
+                <button type="submit" class="btn btn" style="background-color: #01b075; color: white;">Закрыть банковский месяц</button>
+            }
+        </div>
+        <div class="col-md-7">
+            @using (Html.BeginForm("CloseBankYear", "Bank"))
+            {
+                <button type="submit" class="btn" style="background-color: #01b075; color: white;">Закрыть банковский год</button>
+            }
+        </div>
+    </div>
+</div>
+

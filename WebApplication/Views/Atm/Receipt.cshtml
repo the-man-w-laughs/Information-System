@@ -1,0 +1,28 @@
+﻿@model WebApplication.Models.ViewModels.ReceiptModel
+
+@{
+    ViewBag.Title = "Чек";
+}
+
+<h2 style="color: white;">Чек</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal" style="color: white;">
+        <dt>@Html.DisplayNameFor(model => model.CardNumber)</dt>
+        <dd>@Html.DisplayFor(model => model.CardNumber)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Date)</dt>
+        <dd>@($"{Model.Date:dd.MM.yyyy}")</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Amount)</dt>
+        <dd>@Html.DisplayFor(model => model.Amount)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Operation)</dt>
+        <dd>@Html.DisplayFor(model => model.Operation)</dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Новая операция", "WorkPage", new { creditId = Model.CreditId, cardNumber = Model.CardNumber })
+</p>
+

@@ -1,0 +1,188 @@
+﻿@model Services.Common.Model.AccountReportModel
+
+@{
+    ViewBag.Title = "План счетов";
+}
+
+<h2 style="color: white;">План счетов</h2>
+
+<p>@Html.ActionLink("Вернуться на страницу банка", "Index") @*| @Html.ActionLink("Go to transaction report page", "DayTransactionsReport") | @Html.ActionLink("Go to previous day transaction report page", "PreviousDayTransactionsReport")*@</p>
+
+<h3 style="color: white;">Счёт фонда развития</h3>
+<table class="table" style="background-color: #01b075;">
+    <tr>
+        <th>
+            @("Номер счёта")
+        </th>
+        <th>
+            @("Дебет")
+        </th>
+        <th>
+            @("Кредит")
+        </th>
+        <th>
+            @("Баланс")
+        </th>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.DevelopmentFundAccount.AccountNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.DevelopmentFundAccount.DebitValue)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.DevelopmentFundAccount.CreditValue)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.DevelopmentFundAccount.Balance)
+        </td>
+    </tr>
+</table>
+<h3 style="color: white;">Касса банка</h3>
+<table class="table" style="background-color: #01b075;">
+    <tr>
+        <th>
+            @("Номер счёта")
+        </th>
+        <th>
+            @("Дебет")
+        </th>
+        <th>
+            @("Кредит")
+        </th>
+        <th>
+            @("Баланс")
+        </th>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.CashdeskAccount.AccountNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.CashdeskAccount.DebitValue)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.CashdeskAccount.CreditValue)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.CashdeskAccount.Balance)
+        </td>
+    </tr>
+</table>
+<h3 style="color: white;">Кредитные счета</h3>
+<table class="table" style="background-color: #01b075;">
+    <tr>
+        <th>
+            @("Номер аккаунта")
+        </th>
+        <th>
+            @("Тип")
+        </th>
+        <th>
+            @("Дебет")
+        </th>
+        <th>
+            @("Кредит")
+        </th>
+        <th>
+            @("Баланс")
+        </th>
+    </tr>
+    @foreach (var credit in Model.Credits)
+    {
+        string style = credit.Amount == 0 ? "grey" : "";
+        <tr style="background-color: @style">
+            <td>
+                @Html.DisplayFor(modelItem => credit.MainAccount.AccountNumber)
+            </td>
+            <td>
+                @("Основной")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => credit.MainAccount.DebitValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => credit.MainAccount.CreditValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => credit.MainAccount.Balance)
+            </td>
+        </tr>
+        <tr style="background-color: @style">
+            <td>
+                @Html.DisplayFor(modelItem => credit.PercentAccount.AccountNumber)
+            </td>
+            <td>
+                @("Процентный")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => credit.PercentAccount.DebitValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => credit.PercentAccount.CreditValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => credit.PercentAccount.Balance)
+            </td>
+        </tr>
+    }
+</table>
+<h3 style="color: white;">Депозитные счета</h3>
+<table class="table" style="background-color: #01b075;">
+    <tr>
+        <th>
+            @("Номер счёта")
+        </th>
+        <th>
+            @("Тип")
+        </th>
+        <th>
+            @("Дебет")
+        </th>
+        <th>
+            @("Кредит")
+        </th>
+        <th>
+            @("Баланс")
+        </th>
+    </tr>
+    @foreach (var deposit in Model.Deposits)
+    {
+        string style = deposit.Amount == 0 ? "grey" : "";
+        <tr style="background-color: @style">
+            <td>
+                @Html.DisplayFor(modelItem => deposit.MainAccount.AccountNumber)
+            </td>
+            <td>
+                @("Основной")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => deposit.MainAccount.DebitValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => deposit.MainAccount.CreditValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => deposit.MainAccount.Balance)
+            </td>
+        </tr>
+        <tr style="background-color: @style">
+            <td>
+                @Html.DisplayFor(modelItem => deposit.PercentAccount.AccountNumber)
+            </td>
+            <td>
+                @("Процентный")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => deposit.PercentAccount.DebitValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => deposit.PercentAccount.CreditValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => deposit.PercentAccount.Balance)
+            </td>
+        </tr>
+    }
+</table>
