@@ -4,10 +4,68 @@
     ViewBag.Title = "Информация о клиенте";
 }
 
-<h2 >Информация о клиенте</h2>
+<style>
+    .info-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
 
-<div >
-    <hr />
+    .info-container h2 {
+        text-align: center;
+        font-style: italic;
+    }
+
+    .info-container hr {
+        margin-top: 10px;
+        margin-bottom: 20px;
+        border-color: #ddd;
+    }
+
+    .info-container dl {
+        margin-bottom: 20px;
+    }
+
+    .info-container dt {
+        font-weight: bold;
+    }
+
+    .info-container dd {
+        margin-left: 0;
+    }
+
+    .info-container p {
+        text-align: center;
+    }
+
+    .btn {
+        background-color: white;
+        border: 2px solid #4CAF50;
+        color: #4CAF50;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .btn:hover {
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>
+
+<div>
+    <button onclick="window.location.href='@Url.Action("Index")'" class="btn">Назад</button>
+</div>
+<div class="info-container">
+    <h2>Информация о клиенте</h2>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Surname)
@@ -182,10 +240,10 @@
         <dd>
             @Html.DisplayFor(model => model.MonthlyIncome)
         </dd>
-
+        <div class="center">
+            <div class="form-group">
+                <button onclick="window.location.href='@Url.Action("Edit", new { id = Model.Id })'" class="btn">Редактировать</button>
+            </div>
+        </div>
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Вернуться к списку", "Index")
-</p>

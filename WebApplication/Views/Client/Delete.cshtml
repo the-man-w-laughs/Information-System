@@ -4,81 +4,75 @@
     ViewBag.Title = "Удалить клиента";
 }
 
-<h2 >Удалить клиента</h2>
-
-<h3 >Вы точно хотите удалить клиента?</h3>
-<div>
-    <hr />
-    <dl class="dl-horizontal" >
-        <dt>
-            @Html.DisplayNameFor(model => model.Surname)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Surname)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Patronymic)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Patronymic)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BirthDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BirthDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PassportSeries)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PassportSeries)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PassportNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PassportNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IdentificationNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IdentificationNumber)
-        </dd>
-    </dl>
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Удалить" class="btn"/>
-            </div>
-        </div>
+<style>
+    .btn {
+        background-color: white;
+        border: 2px solid #4CAF50;
+        color: #4CAF50;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        border-radius: 5px;
     }
 
-    <div>
-        @Html.ActionLink("Вернуться к списку", "Index")
+    .btn:hover {
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>
+
+<div>
+    <button onclick="window.location.href='@Url.Action("Index")'" class="btn">Назад</button>
+</div>
+<div style="width:50%; margin:50px auto; border:1px solid #ddd; padding:20px;">
+    <h3 style="text-align:center;">Вы уверены?</h3>
+    <hr style="border-top:1px solid #ddd;"> <table style="width:100%;">
+    <tr>
+        <th style=" width: 49%; text-align:right; padding-right: 20px;">
+            @Html.DisplayNameFor(model => model.Surname)
+        </th>
+        <td> @Html.DisplayFor(model => model.Surname) </td>
+    </tr>
+    <tr>
+        <th style="text-align:right; padding-right:20px;">
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <td> @Html.DisplayFor(model => model.Name) </td>
+    </tr>
+    <tr>
+        <th style="text-align:right; padding-right:20px;">
+            @Html.DisplayNameFor(model => model.Patronymic)
+        </th>
+        <td> @Html.DisplayFor(model => model.Patronymic) </td>
+    </tr>
+    <tr>
+        <th style="text-align:right; padding-right:20px;">
+            @Html.DisplayNameFor(model => model.IdentificationNumber)
+        </th>
+        <td> @Html.DisplayFor(model => model.IdentificationNumber) </td>
+    </tr>
+    <tr>
+        <th style="text-align:right; padding-right:20px;">
+            @Html.DisplayNameFor(model => model.PassportSeries)
+        </th>
+        <td> @Html.DisplayFor(model => model.PassportSeries) </td>
+    </tr>
+    <tr>
+        <th style="text-align:right; padding-right:20px;">
+            @Html.DisplayNameFor(model => model.PassportNumber)
+        </th>
+        <td> @Html.DisplayFor(model => model.PassportNumber) </td>
+    </tr>
+</table>
+    <hr style="border-top:1px solid #ddd;">
+    <div style="text-align:center;">
+        @using (Html.BeginForm())
+        {@Html.AntiForgeryToken()
+        <input type="submit" value="Удалить" class="btn" style="margin-right:20px;" />
+    }
     </div>
 </div>

@@ -1,14 +1,62 @@
 ﻿@model IEnumerable<WebApplication.Models.ViewModels.Client>
 
 @{
-    ViewBag.Title = "Список клиентов";
+    ViewBag.Title = "Клиенты";
 }
 
-<h2 >Список клиентов</h2>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
 
-<p>
-    @Html.ActionLink("Создать нового клиента", "Create")
-</p>
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+        text-align: center;
+    }
+
+    .create-button {
+        background-color: white;
+        border: 2px solid #4CAF50;
+        color: #4CAF50;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .create-button:hover {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .container-title {
+        display: flex;
+        justify-content:space-between;
+        margin-bottom:50px;
+    }
+</style>
+
+<div class="container-title">
+    <h2>Клиенты</h2>
+    <button class="create-button" onclick="window.location.href='@Url.Action("Create")'">Создать нового клиента</button>
+</div>
+
 <table class="table">
     <tr>
         <th>
@@ -20,32 +68,27 @@
         <th>
             @Html.DisplayNameFor(model => model.Patronymic)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model.OrderBy(o => o.Surname)) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Surname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Patronymic)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.ActionLink("Подробнее", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model.OrderBy(o => o.Surname))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Patronymic)
+            </td>
+            <td>
+                @Html.ActionLink("Подробнее", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
