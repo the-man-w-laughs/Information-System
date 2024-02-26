@@ -14,10 +14,31 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        @Html.ActionLink("PRBank", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })        
+    <nav class="navbar navbar-expand-lg">
+        @Html.ActionLink("ОАО \"Лучший банк на свете\"", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
         <div class="navbar-text mx-auto">Текущий день - @systemInformationService.CurrentBankDay.ToString("dd/MM/yyyy")</div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "ATM")">ATM</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "Bank")">Банк</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "Client")">Клиенты</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "Deposit")">Депозиты</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "Credit")">Кредиты</a>
+                </li>
+            </ul>
+        </div>
     </nav>
+
+
     <br />
     <div class="container body-content">
         @RenderBody()
