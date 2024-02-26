@@ -8,7 +8,7 @@ namespace WebApplication.Models.ViewModels
     {
         public int CreditId { get; set; }
 
-        [Display(Name = "Текущий день")]
+        [Display(Name = "Сегодня")]
         public DateTime CurrentDay { get; set; }
 
         [Display(Name = "График платежей")]

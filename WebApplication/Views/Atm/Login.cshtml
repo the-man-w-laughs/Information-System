@@ -1,42 +1,88 @@
 ﻿@model WebApplication.Models.ViewModels.AtmLoginModel
 
 @{
-    ViewBag.Title = "Войти";
+    ViewBag.Title = "Банкомат";
 }
 
-<h2 >Войти</h2>
+<style>
+    /* Center the header and form */
+    .atm-form-container {
+        width: 500px;
+        height: 400px;
+        margin: 0 auto;
+        background-image: url('../../Images/atm-girl-hands-password-wallpaper-preview.jpg');
+        background-size: cover;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: center; /* horizontally center */
+        align-items: center; /* vertically center */
+    }
 
-@using (Html.BeginForm("Login", "ATM"))
-{
-    @Html.AntiForgeryToken()
+        /* Style form elements */
+        .atm-form-container input[type="text"],
+        .atm-form-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
 
-    <div class="form-horizontal" >
-        <hr/>
-        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
-        <div class="form-group">
-            @Html.LabelFor(model => model.CreditCardNumber, htmlAttributes: new {@class = "control-label col-md-2"})
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CreditCardNumber, new {htmlAttributes = new {@class = "form-control"}})
-                @Html.ValidationMessageFor(model => model.CreditCardNumber, "", new {@class = "text-danger"})
+        .atm-form-container input[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            .atm-form-container input[type="submit"]:hover {
+                background-color: #45a049;
+            }
+
+    /* Center the header */
+    h2 {
+        text-align: center;
+    }
+</style>
+
+<h2>Банкомат</h2>
+
+<div class="atm-form-container">
+    @using (Html.BeginForm("Login", "ATM", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div>
+            <hr />
+            @Html.ValidationSummary(true, "", new { })
+            <div>
+                @Html.LabelFor(model => model.CreditCardNumber)
+                <div>
+                    @Html.EditorFor(model => model.CreditCardNumber)
+                    @Html.ValidationMessageFor(model => model.CreditCardNumber, "", new { })
+                </div>
+            </div>
+
+            <div>
+                @Html.LabelFor(model => model.PinCode)
+                <div>
+                    @Html.PasswordFor(model => model.PinCode)
+                    @Html.ValidationMessageFor(model => model.PinCode, "", new { })
+                </div>
+            </div>
+
+            <div>
+                <div>
+                    <input type="submit" value="Войти" />
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PinCode, htmlAttributes: new {@class = "control-label col-md-2"})
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PinCode, new {htmlAttributes = new {@class = "form-control"}})
-                @Html.ValidationMessageFor(model => model.PinCode, "", new {@class = "text-danger"})
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Войти" class="btn"/>
-            </div>
-        </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Вернуться на домашнюю страницу", "Index", "Home")
+    }
 </div>
