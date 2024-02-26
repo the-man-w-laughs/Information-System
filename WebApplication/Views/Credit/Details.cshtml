@@ -4,12 +4,12 @@
     ViewBag.Title = "Детали договора";
 }
 
-<h2 style="color: white;">Детали договора</h2>
+<h2 >Детали договора</h2>
 
 <div>
-    <h4 style="color: white;">Кредитный</h4>
+    <h4 >Кредитный</h4>
     <hr/>
-    <dl class="dl-horizontal" style="color: white;">
+    <dl class="dl-horizontal" >
         <dt>
             @Html.DisplayNameFor(model => model.CreditNumber)
         </dt>
@@ -99,7 +99,7 @@
             {
                 using (Html.BeginForm("CloseCredit", "Credit", new { creditId = Model.Id }, FormMethod.Post))
                 {
-                    <button class="btn" style="background-color: #01b075; color: white;" type="submit">Закрыть кредит</button>
+                    <button class="btn" type="submit">Закрыть кредит</button>
                 }
             }
         </div>

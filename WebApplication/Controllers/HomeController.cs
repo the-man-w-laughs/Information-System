@@ -1,5 +1,5 @@
-﻿using System.Web.Mvc;
-using AutoMapper;
+﻿using AutoMapper;
+using System.Web.Mvc;
 using WebApplication.Infrastructure;
 
 namespace WebApplication.Controllers

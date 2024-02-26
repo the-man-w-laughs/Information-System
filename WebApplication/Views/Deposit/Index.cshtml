@@ -4,12 +4,12 @@
     ViewBag.Title = "Договоры";
 }
 
-<h2 style="color: white;">Договоры</h2>
+<h2 >Договоры</h2>
 
 <p>
     @Html.ActionLink("Создать новый договор ", "Create") | @Html.ActionLink(" Перейти на страницу депозитных планов", "Index", "PlanOfDeposit")
 </p>
-<table class="table" style="background-color: #01b075;">
+<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.PlanOfDeposit)

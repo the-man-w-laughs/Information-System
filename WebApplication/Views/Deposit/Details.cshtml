@@ -4,12 +4,12 @@
     ViewBag.Title = "Детали договора";
 }
 
-<h2 style="color: white;">Детали договора</h2>
+<h2 >Детали договора</h2>
 
 <div>
-    <h4 style="color: white;">Депозитный</h4>
+    <h4 >Депозитный</h4>
     <hr />
-    <dl class="dl-horizontal" style="color: white;">
+    <dl class="dl-horizontal" >
         <dt>
             @Html.DisplayNameFor(model => model.DepositNumber)
         </dt>
@@ -81,7 +81,7 @@
     {
         using (Html.BeginForm("CloseDeposit", "Deposit", new {depositId = Model.Id}, FormMethod.Post))
         {
-            <button class="btn" style="background-color: #01b075; color: white;" type="submit">Закрыть депозит</button>
+            <button class="btn" type="submit">Закрыть депозит</button>
         }
     }
 </p>
@@ -90,7 +90,7 @@
     {
         using (Html.BeginForm("TakePercents", "Deposit", new { depositId = Model.Id }, FormMethod.Post))
         {
-            <button class="btn" style="background-color: #01b075; color: white;" type="submit">Снять проценты</button>
+            <button class="btn" type="submit">Снять проценты</button>
         }
     }*@
 </p>
