@@ -4,7 +4,64 @@
     ViewBag.Title = "График";
 }
 
-<h2 >График</h2>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .table tr:hover {
+        background-color: #ddd;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .link {
+        color: #007bff; /* Blue */
+        text-decoration: none;
+    }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
+    .btn {
+        background-color: white;
+        border: 2px solid #4CAF50;
+        color: #4CAF50;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .btn:hover {
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>
+
+
+<div>
+    <button onclick="window.location.href='@Url.Action("Details",  new { creditId = Model.CreditId })'" class="btn">Назад</button>
+</div>
+<h2>График</h2>
 
 <table class="table">
     <tr>
@@ -18,17 +75,9 @@
 
     @foreach (var item in Model.PaymentSchedule)
     {
-        string style = item.Key < Model.CurrentDay ? "Green" : "FireBrick";
-        <tr  style="background-color:@style">
-            <td>
-                @item.Key.ToString("dd/MM/yyyy")
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Value)
-            </td>
+        <tr>
+            <td>@item.Key.ToString("dd/MM/yyyy")</td>
+            <td>@item.Value</td>
         </tr>
     }
 </table>
-<p>
-    @Html.ActionLink("Вернуться к списку", "Details", new { creditId = Model.CreditId })
-</p>

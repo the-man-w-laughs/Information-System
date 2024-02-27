@@ -4,92 +4,154 @@
     ViewBag.Title = "Детали договора";
 }
 
-<h2 >Детали договора</h2>
+<style>
+    .info-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+        .info-container h2 {
+            text-align: center;
+            font-style: italic;
+        }
+
+        .info-container hr {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border-color: #ddd;
+        }
+
+        .info-container dl {
+            margin-bottom: 20px;
+        }
+
+        .info-container dt {
+            font-weight: bold;
+        }
+
+        .info-container dd {
+            margin-left: 0;
+        }
+
+        .info-container p {
+            text-align: center;
+        }
+
+    .btn {
+        background-color: white;
+        border: 2px solid #4CAF50;
+        color: #4CAF50;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .btn:hover {
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>
 
 <div>
-    <h4 >Кредитный</h4>
-    <hr/>
-    <dl class="dl-horizontal" >
-        <dt>
-            @Html.DisplayNameFor(model => model.CreditNumber)
-        </dt>
+    <button onclick="window.location.href='@Url.Action("Index")'" class="btn">Назад</button>
+</div>
+<div class="info-container">
+    <h2>Детали договора</h2>
 
-        <dd>
-            @Html.DisplayFor(model => model.CreditNumber)
-        </dd>
+    <div>
+        <h4>Кредитный</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.CreditNumber)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PlanOfCredit)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CreditNumber)
+            </dd>
 
-        <dd>
-            @($"{Model.PlanOfCredit.Name}")
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PlanOfCredit)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Client)
-        </dt>
+            <dd>
+                @($"{Model.PlanOfCredit.Name}")
+            </dd>
 
-        <dd>
-            @Html.ActionLink($"{Model.Client.Surname} {Model.Client.Name} {Model.Client.Patronymic}", "Details", "Client", new { }, new { id = Model.ClientId })
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Client)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
+            <dd>
+                @Html.ActionLink($"{Model.Client.Surname} {Model.Client.Name} {Model.Client.Patronymic}", "Details", "Client", new { }, new { id = Model.ClientId })
+            </dd>
 
-        <dd>
-            @($"{Model.StartDate.Date:dd.MM.yyyy}")
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
+            <dd>
+                @($"{Model.StartDate.Date:dd.MM.yyyy}")
+            </dd>
 
-        <dd>
-            @($"{Model.EndDate.Date:dd.MM.yyyy}")
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Amount)
-        </dt>
+            <dd>
+                @($"{Model.EndDate.Date:dd.MM.yyyy}")
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Amount)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Amount)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CurrentPercentAmount)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Amount)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CurrentPercentAmount)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CurrentPercentAmount)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CreditCardNumber)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CurrentPercentAmount)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CreditCardNumber)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CreditCardNumber)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CreditCardPin)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CreditCardNumber)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CreditCardPin)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CreditCardPin)
+            </dt>
 
-        <dt>
-            @("График оплат")
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CreditCardPin)
+            </dd>
 
-        <dd>
-            @Html.ActionLink("Перейти к графику", "PaymentSchedule", new { creditId = Model.Id })
-        </dd>
-    </dl>
+            <dt>
+                @("График оплат")
+            </dt>
+
+            <dd>
+                @Html.ActionLink("Перейти к графику", "PaymentSchedule", new { creditId = Model.Id })
+            </dd>
+        </dl>
+    </div>
 </div>
 
 <div class="row">
@@ -105,7 +167,3 @@
         </div>
     </div>
 </div>
-
-<p>
-    @Html.ActionLink("Вернуться к списку", "Index")
-</p>

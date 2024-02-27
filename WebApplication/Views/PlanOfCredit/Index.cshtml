@@ -4,43 +4,117 @@
     ViewBag.Title = "Кредитные планы";
 }
 
-<h2 >Кредитные планы</h2>
+<style>
+    .table-container {
+        max-width: 800px;
+        margin: 20px auto;
+        overflow-x: auto;
+    }
 
-<p>
-    @Html.ActionLink("Создать новый ", "Create") | @Html.ActionLink(" Вернуться к списку договоров", "Index", "Credit")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MonthPeriod)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Percent)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Anuity)
-        </th>
-        <th></th>
-    </tr>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MonthPeriod)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Percent)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Anuity)
-        </td>
-    </tr>
-}
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
 
-</table>
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .table tr:hover {
+        background-color: #ddd;
+    }
+
+    .action-links {
+        margin-top: 20px;
+    }
+
+    .action-links a {
+        color: #4CAF50;
+        text-decoration: none;
+        margin-right: 10px;
+    }
+
+        .action-links a:hover {
+            text-decoration: underline;
+        }
+
+    .btn {
+        background-color: white;
+        border: 2px solid #4CAF50;
+        color: #4CAF50;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .btn:hover {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .container-title {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 50px;
+    }
+</style>
+
+
+<div>
+    <button onclick="window.location.href='@Url.Action("Index",   "Credit")'" class="btn">Назад</button>
+</div>
+<div class="table-container">
+    <div class="container-title">
+        <h2>Кредитные планы</h2>
+        <div>
+            <button onclick="window.location.href='@Url.Action( "Create")'" class="btn">Создать</button>
+        </div>
+    </div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MonthPeriod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Percent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Anuity)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MonthPeriod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Percent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Anuity)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

@@ -3,45 +3,118 @@
 @{
     ViewBag.Title = "Договоры";
 }
-
-<h2 >Договоры</h2>
-
-<p>
-    @Html.ActionLink("Создать новый договор ", "Create") | @Html.ActionLink(" Перейти на страницу кредитных планов", "Index", "PlanOfCredit")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.PlanOfCredit)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Client)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Amount)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        string style = item.Amount == 0 ? "grey" : "";
-        <tr style="background-color:@style">
-            <td>
-                @Html.DisplayFor(modelItem => item.PlanOfCredit.Name)
-            </td>
-            <td>
-                @Html.ActionLink($"{item.Client.Surname} {item.Client.Name} {item.Client.Patronymic}", "Details", "Client", new {id = item.Client.Id}, new {})
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.ActionLink("Детали", "Details", new {creditId = item.Id})
-            </td>
-        </tr>
+<style>
+    .table-container {
+        max-width: 800px;
+        margin: 20px auto;
+        overflow-x: auto;
     }
 
-</table>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .table tr:hover {
+        background-color: #ddd;
+    }
+
+    .action-links {
+        margin-top: 20px;
+    }
+
+    .action-links a {
+        color: #4CAF50;
+        text-decoration: none;
+        margin-right: 10px;
+    }
+
+        .action-links a:hover {
+            text-decoration: underline;
+        }
+
+    .btn {
+        background-color: white;
+        border: 2px solid #4CAF50;
+        color: #4CAF50;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .btn:hover {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .container-title {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 50px;
+    }
+</style>
+
+<div>
+    <button onclick="window.location.href='@Url.Action("Index",  "Deposit")'" class="btn">Назад</button>
+</div>
+<div class="table-container">
+    <div class="container-title">
+        <h2>Договоры</h2>
+        <div>
+            <button onclick="window.location.href='@Url.Action( "Create")'" class="btn">Создать договор</button>
+            <button onclick="window.location.href='@Url.Action( "Index", "PlanOfCredit")'" class="btn">Кредитные планы</button>
+        </div>
+    </div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PlanOfCredit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            string style = item.Amount == 0 ? "grey" : "";
+            <tr style="background-color:@style">
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlanOfCredit.Name)
+                </td>
+                <td>
+                    @Html.ActionLink($"{item.Client.Surname} {item.Client.Name} {item.Client.Patronymic}", "Details", "Client", new { id = item.Client.Id }, new { })
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.ActionLink("Детали", "Details", new { creditId = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>
     
