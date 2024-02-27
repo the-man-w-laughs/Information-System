@@ -4,60 +4,114 @@
     ViewBag.Title = "Создать план";
 }
 
-<h2 >Создать план</h2>
+<style>
+    .form-container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+    .form-group {
+        margin-bottom: 20px;
+    }
 
-    <div class="form-horizontal" >
-        <h4 >Депозитный</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+    .control-label {
+        font-size: 18px;
+        color: #333;
+    }
+
+    .custom-input {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        width: 100%;
+        display: block;
+        height: calc(1.5em + 0.75rem + 2px);
+        background-color: #fff;
+        background-clip: padding-box;
+        font-size: 16px;
+        color: #555;
+    }
+
+    .checkbox label {
+        font-weight: normal;
+    }
+
+    .btn {
+        background-color: white;
+        border: 2px solid #4CAF50;
+        color: #4CAF50;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+        .btn:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+    .col-md-10 {
+        flex: 1;
+        margin-left: 0;
+    }
+
+    .col-md-offset-2 {
+        margin-left: 0;
+    }
+</style>
+
+<div>
+    <button onclick="window.location.href='@Url.Action("Index")'" class="btn">Назад</button>
+</div>
+<div class="form-container">
+    <h2>Создать план</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "custom-input" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DayPeriod, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DayPeriod, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="form-group">
+                @Html.LabelFor(model => model.DayPeriod, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.DayPeriod, new { htmlAttributes = new { @class = "custom-input" } })
                 @Html.ValidationMessageFor(model => model.DayPeriod, "", new { @class = "text-danger" })
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Percent, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Percent, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Percent, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.Percent, new { htmlAttributes = new { @class = "custom-input" } })
                 @Html.ValidationMessageFor(model => model.Percent, "", new { @class = "text-danger" })
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Revocable, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Revocable, htmlAttributes: new { @class = "control-label" })
                 <div class="checkbox">
                     @Html.EditorFor(model => model.Revocable)
                     @Html.ValidationMessageFor(model => model.Revocable, "", new { @class = "text-danger" })
                 </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Создать" class="btn" />
+            <div class="center">
+                <div class="form-group">
+                    <input type="submit" value="Создать" class="btn" />
+                </div>
             </div>
         </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Вернуться к списку планов", "Index")
+    }
 </div>
 
 @section Scripts {

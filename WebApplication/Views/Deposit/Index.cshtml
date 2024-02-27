@@ -4,11 +4,53 @@
     ViewBag.Title = "Договоры";
 }
 
-<h2 >Договоры</h2>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
 
-<p>
-    @Html.ActionLink("Создать новый договор ", "Create") | @Html.ActionLink(" Перейти на страницу депозитных планов", "Index", "PlanOfDeposit")
-</p>
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .btn {
+        background-color: white;
+        border: 2px solid #4CAF50;
+        color: #4CAF50;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .container-title {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 50px;
+    }
+</style>
+
+<div class="container-title">
+    <h2>Договоры</h2>
+    <div>
+        <button class="btn" onclick="window.location.href='@Url.Action("Create")'">Создать новый договор</button>
+        <button class="btn" onclick="window.location.href='@Url.Action("Index","PlanOfDeposit" )'">Депозитные планы</button>
+    </div>
+</div>
+
 <table class="table">
     <tr>
         <th>
@@ -31,14 +73,14 @@
                 @Html.DisplayFor(modelItem => item.PlanOfDeposit.Name)
             </td>
             <td>
-                @Html.ActionLink($"{item.Client.Surname} {item.Client.Name} {item.Client.Patronymic}", "Details", "Client", new {id = item.Client.Id}, new {})
+                @Html.ActionLink($"{item.Client.Surname} {item.Client.Name} {item.Client.Patronymic}", "Details", "Client", new { id = item.Client.Id }, new { })
             </td>
 
             <td>
                 @Html.DisplayFor(modelItem => item.Amount)
             </td>
             <td>
-                @Html.ActionLink("Детали", "Details", new {depositId = item.Id})
+                @Html.ActionLink("Детали", "Details", new { depositId = item.Id })
             </td>
         </tr>
     }

@@ -4,12 +4,71 @@
     ViewBag.Title = "Детали договора";
 }
 
-<h2 >Детали договора</h2>
+
+<style>
+    .info-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .info-container h2 {
+        text-align: center;
+        font-style: italic;
+    }
+
+    .info-container hr {
+        margin-top: 10px;
+        margin-bottom: 20px;
+        border-color: #ddd;
+    }
+
+    .info-container dl {
+        margin-bottom: 20px;
+    }
+
+    .info-container dt {
+        font-weight: bold;
+    }
+
+    .info-container dd {
+        margin-left: 0;
+    }
+
+    .info-container p {
+        text-align: center;
+    }
+
+    .btn {
+        background-color: white;
+        border: 2px solid #4CAF50;
+        color: #4CAF50;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .btn:hover {
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>
 
 <div>
-    <h4 >Депозитный</h4>
+    <button onclick="window.location.href='@Url.Action("Index")'" class="btn">Назад</button>
+</div>
+<div class="info-container">
+    <h2>Детали договора</h2>
     <hr />
-    <dl class="dl-horizontal" >
+    <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.DepositNumber)
         </dt>
@@ -79,7 +138,7 @@
 <p>
     @if (Model.IsCanCloseToday)
     {
-        using (Html.BeginForm("CloseDeposit", "Deposit", new {depositId = Model.Id}, FormMethod.Post))
+        using (Html.BeginForm("CloseDeposit", "Deposit", new { depositId = Model.Id }, FormMethod.Post))
         {
             <button class="btn" type="submit">Закрыть депозит</button>
         }
@@ -87,13 +146,10 @@
 </p>
 <p>
     @*@if (Model.IsCanWithdrawPercentsToday)
-    {
-        using (Html.BeginForm("TakePercents", "Deposit", new { depositId = Model.Id }, FormMethod.Post))
         {
-            <button class="btn" type="submit">Снять проценты</button>
-        }
-    }*@
-</p>
-<p>
-    @Html.ActionLink("Вернуться к списку договоров", "Index")
+            using (Html.BeginForm("TakePercents", "Deposit", new { depositId = Model.Id }, FormMethod.Post))
+            {
+                <button class="btn" type="submit">Снять проценты</button>
+            }
+        }*@
 </p>
