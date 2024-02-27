@@ -42,19 +42,19 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("AccountReport", "Bank")">Банк</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="@Url.Action("Index", "ATM")">Банкомат</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index", "Bank")">Банк</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index", "Client")">Клиенты</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="@Url.Action("Index", "Deposit")">Депозиты</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="@Url.Action("Index", "Credit")">Кредиты</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "Client")">Клиенты</a>
                 </li>
             </ul>
             <div class="navbar-text">@systemInformationService.CurrentBankDay.ToString("dd/MM/yyyy")</div>

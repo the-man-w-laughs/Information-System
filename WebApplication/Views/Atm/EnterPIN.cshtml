@@ -1,0 +1,98 @@
+﻿@model WebApplication.Models.ViewModels.AtmLoginModel
+@{
+    ViewBag.Title = "EnterPIN";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    body {
+        background-image: url('../../Images/buttonsATM.jpg');
+        background-size: cover;
+        background-position: center;
+        min-height: 100vh;
+        margin: 0;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form-container {
+        background-color: rgba(255, 255, 255, 0.7); /* Прозрачный белый фон */
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 400px;
+        width: 100%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Тень */
+        position: absolute; /* Абсолютное позиционирование */
+        top: 50%; /* Расположение по вертикали */
+        left: 50%; /* Расположение по горизонтали */
+        transform: translate(-50%, -50%); /* Центрирование */
+    }
+
+        .form-container h2 {
+            text-align: center;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .form-container input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box; /* Учитываем padding и border в общей ширине */
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #4CAF50; /* Зеленый цвет кнопки */
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .form-container button:hover {
+                background-color: #45a049; /* Цвет кнопки при наведении */
+            }
+
+    .error-message {
+        color: red;
+        text-align: center;
+    }
+
+    h2 {
+        text-align: center;
+        color: #333; /* Change color to your preference */
+        font-size: 24px; /* Adjust font size as needed */
+        margin-bottom: 20px; /* Add some bottom margin for spacing */
+    }
+</style>
+
+
+<div class="form-container">
+    <h2>ПИН-КОД</h2>
+    @using (Html.BeginForm("Login", "ATM", FormMethod.Post))
+    {
+        <div>
+            @Html.LabelFor(model => model.PinCode, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.PinCode, new { required = "required", autocomplete = "off" })
+        </div>
+
+        <button type="submit">Далее</button>
+    }
+
+    <div class="tries-container">
+        <span class="tries-label">Осталось попыток:</span>
+        <span class="tries-value">@(3 - Model.NumberOfTries)</span>
+    </div>
+
+    @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+    {
+        <div class="error-message">@ViewBag.ErrorMessage</div>
+    }
+</div>

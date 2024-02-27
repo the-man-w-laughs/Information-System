@@ -1,10 +1,16 @@
 ﻿@model IEnumerable<WebApplication.Models.ViewModels.Deposit>
 
 @{
-    ViewBag.Title = "Договоры";
+    ViewBag.Title = "Депозиты";
 }
 
 <style>
+    .table-container {
+        max-width: 600px;
+        margin: 20px auto;
+        overflow-x: auto;
+    }
+
     table {
         width: 100%;
         border-collapse: collapse;
@@ -44,14 +50,14 @@
 </style>
 
 <div class="container-title">
-    <h2>Договоры</h2>
+    <h2>Депозиты</h2>
     <div>
         <button class="btn" onclick="window.location.href='@Url.Action("Create")'">Создать новый договор</button>
         <button class="btn" onclick="window.location.href='@Url.Action("Index","PlanOfDeposit" )'">Депозитные планы</button>
     </div>
 </div>
 
-<table class="table">
+<table class="table  table-container ">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.PlanOfDeposit)

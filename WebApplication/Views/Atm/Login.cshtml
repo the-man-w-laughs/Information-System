@@ -50,6 +50,17 @@
     h2 {
         text-align: center;
     }
+
+    .validation-summary-errors {
+        text-align: center;
+        color: red; /* Adjust the color as needed */
+        margin-bottom: 10px; /* Add some space below the validation summary */
+    }
+
+    .field-validation-error {
+        color: red; /* Adjust the color as needed */
+        text-align: center;
+    }
 </style>
 
 <h2>Банкомат</h2>
@@ -59,30 +70,32 @@
     {
         @Html.AntiForgeryToken()
 
+    <div>
+
         <div>
-            <hr />
-            @Html.ValidationSummary(true, "", new { })
+            @Html.LabelFor(model => model.CreditCardNumber)
             <div>
-                @Html.LabelFor(model => model.CreditCardNumber)
-                <div>
-                    @Html.EditorFor(model => model.CreditCardNumber)
-                    @Html.ValidationMessageFor(model => model.CreditCardNumber, "", new { })
-                </div>
-            </div>
-
-            <div>
-                @Html.LabelFor(model => model.PinCode)
-                <div>
-                    @Html.PasswordFor(model => model.PinCode)
-                    @Html.ValidationMessageFor(model => model.PinCode, "", new { })
-                </div>
-            </div>
-
-            <div>
-                <div>
-                    <input type="submit" value="Войти" />
-                </div>
+                @Html.EditorFor(model => model.CreditCardNumber)
+                @Html.ValidationMessageFor(model => model.CreditCardNumber, "", new { })
             </div>
         </div>
+
+        <div>
+            @Html.LabelFor(model => model.PinCode)
+            <div>
+                @Html.PasswordFor(model => model.PinCode)
+                @Html.ValidationMessageFor(model => model.PinCode, "", new { })
+            </div>
+        </div>
+
+        <div>
+            <div>
+                <input type="submit" value="Войти" />
+            </div>
+        </div>
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { })
+    </div>
     }
 </div>

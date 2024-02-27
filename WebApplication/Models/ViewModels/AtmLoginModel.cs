@@ -13,5 +13,8 @@ namespace WebApplication.Models.ViewModels
         [StringLength(4)]
         [Display(Name = "Пин-код")]
         public string PinCode { get; set; }
+        [Display(Name = "Сумма")]
+        public int AmountToWithdraw { get; set; }
+        public int NumberOfTries { get; set; }
     }
 }

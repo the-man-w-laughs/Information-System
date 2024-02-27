@@ -1,10 +1,10 @@
-﻿using System.Web.Mvc;
-using AutoMapper;
-using Services.Common;
-using Services.Transaction;
+﻿using AutoMapper;
 using Microsoft.Practices.Unity;
-using WebApplication.Infrastructure;
+using Services.Common;
 using Services.Common.Model;
+using Services.Transaction;
+using System.Web.Mvc;
+using WebApplication.Infrastructure;
 
 namespace WebApplication.Controllers
 {
@@ -29,19 +29,19 @@ namespace WebApplication.Controllers
         public ActionResult CloseBankDay()
         {
             BankService.CloseBankDay();
-            return RedirectToAction("Index");
+            return RedirectToAction("AccountReport");
         }
 
         public ActionResult CloseBankMonth()
         {
             BankService.CloseBankMonth();
-            return RedirectToAction("Index");
+            return RedirectToAction("AccountReport");
         }
 
         public ActionResult CloseBankYear()
         {
             BankService.CloseBankYear();
-            return RedirectToAction("Index");
+            return RedirectToAction("AccountReport");
         }
 
         public ActionResult DayTransactionsReport()

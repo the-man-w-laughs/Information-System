@@ -1,9 +1,9 @@
-﻿using System.Linq;
+﻿using Microsoft.Practices.Unity;
 using Services.Account;
 using Services.Common.Model;
 using Services.Credit.Models;
 using Services.Transaction;
-using Microsoft.Practices.Unity;
+using System.Linq;
 
 namespace Services.ATM
 {
@@ -51,6 +51,12 @@ namespace Services.ATM
 
             TransactionService.CommitTransaction(credit.MainAccount, account, amount);
             Context.SaveChanges();
+        }
+
+        public bool IsCardExist(string cardNumber)
+        {
+            var credit = Context.Credits.FirstOrDefault(e => e.CreditCardNumber == cardNumber);
+            return credit != null;
         }
     }
 }

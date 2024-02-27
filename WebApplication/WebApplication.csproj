@@ -194,7 +194,11 @@
     <Content Include="Images\atm-girl-hands-password-wallpaper-preview.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\buttonsATM.jpg" />
+    <Content Include="Images\buttons_work_page.jpg" />
     <Content Include="Images\istockphoto-1392917705-612x612.jpg" />
+    <Content Include="Images\money.jpg" />
+    <Content Include="Images\sustainable-investment-iStock-1470939758.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -350,6 +354,9 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Atm\ATMCardInsert.cshtml" />
+    <Content Include="Views\Atm\EnterPIN.cshtml" />
+    <Content Include="Views\Atm\AmountToWithdraw.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

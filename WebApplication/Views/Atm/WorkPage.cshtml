@@ -1,77 +1,115 @@
-﻿@model WebApplication.Models.ViewModels.AtmAccountModel
-
-@{
-    ViewBag.Title = "Банкомат";
-}
-
-<h2 >Банкомат</h2>
-@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-<div class="row" >
-    <div class="col-md-4">
-        <h4>Баланс</h4>
-        <h4>@(Model.Amount)</h4>
-    </div>
-    <div class="col-md-4">
-        <h4>Снять деньги</h4>
-        @using (Html.BeginForm("WithdrawMoney", "Atm"))
-        {
-            @Html.Hidden("creditId", Model.CreditId)
-            @Html.Hidden("cardNumber", Model.CardNumber)
-            <div class="form-group">
-                @Html.Label("Amount", htmlAttributes: new { @class = "control-label col-md-8" })
-                <div class="col-md-10">
-                    @Html.Editor("amount", new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessage("amount", "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.Label("Повторный пин-код", htmlAttributes: new { @class = "control-label col-md-8" })
-                <div class="col-md-10">
-                    @Html.Editor("pinCode", new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessage("pinCode", "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" data-toggle="" value="Снять" class="btn">
-                </div>
-            </div>
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Банкомат</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-image: url('../../Images/buttons_work_page.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            margin: 0;
+            justify-content: center;
+            align-items: center;
         }
-    </div>
-    <div class="col-md-4">
-        <h4>Перевести деньги</h4>
-        @using (Html.BeginForm("TransferMoney", "Atm"))
-        {
-            @Html.Hidden("creditId", Model.CreditId)
-            @Html.Hidden("cardNumber", Model.CardNumber)
-            <div class="form-group">
-                @Html.Label("Номер счёта", htmlAttributes: new { @class = "control-label col-md-8" })
-                <div class="col-md-10">
-                    @Html.Editor("accountNumber", new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessage("accountNumber", "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.Label("Amount", htmlAttributes: new { @class = "control-label col-md-8" })
-                <div class="col-md-10">
-                    @Html.Editor("amount", new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessage("amount", "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.Label("Повторный пин-код", htmlAttributes: new { @class = "control-label col-md-8" })
-                <div class="col-md-10">
-                    @Html.Editor("pinCode", new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessage("pinCode", "", new { @class = "text-danger" })
-                </div>
-            </div>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Перевести" class="btn"/>
-                </div>
-            </div>
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
+
+            .form-container h2 {
+                text-align: center;
+            }
+
+            .form-container label {
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            .form-container input[type="text"] {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                margin-bottom: 10px;
+                box-sizing: border-box;
+            }
+
+            .form-container button {
+                width: 100%;
+                padding: 10px;
+                border: none;
+                background-color: #4CAF50;
+                color: white;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+                .form-container button:hover {
+                    background-color: #45a049;
+                }
+
+                /* Highlight style for "Забрать карту" button */
+                .form-container button.take-card {
+                    background-color: #f44336; /* Red background */
+                }
+
+                   .take-card {
+                        background-color: #d32f2f; /* Darker red on hover */
+                    }
+
+        .error-message {
+            color: red;
+            text-align: center;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Банкомат</h2>
+        <!-- Your form content here -->
+        @Html.ValidationSummary(true, "", new { @class = "error-message" })
+        <div>
+            <div class=" p-3 mb-3 rounded">
+                @using (Html.BeginForm("WithdrawMoneyEnter", "Atm"))
+                {
+                    <div>
+                        <input type="submit" value="Снять наличные" class="btn btn-success" />
+                    </div>
+                }
+
+                @using (Html.BeginForm("ViewTotal", "Atm"))
+                {
+                    <div>
+                        <input type="submit" value="Посмотреть остаток" class="btn btn-success" />
+                    </div>
+                }
+
+                @using (Html.BeginForm("TakeCardBack", "Atm"))
+                {
+                    <div>
+                        <input type="submit" value="Забрать карту" class="btn take-card" />
+                    </div>
+                }
+            </div>
+        </div>
     </div>
-</div>
+</body>
+</html>
