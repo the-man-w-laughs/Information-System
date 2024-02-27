@@ -55,6 +55,7 @@
     <Compile Include="Client.cs" />
     <Compile Include="Credit.cs" />
     <Compile Include="AppContext.cs" />
+    <Compile Include="Currency.cs" />
     <Compile Include="Deposit.cs" />
     <Compile Include="Disability.cs" />
     <Compile Include="MartialStatus.cs" />

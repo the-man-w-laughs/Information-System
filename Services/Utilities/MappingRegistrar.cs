@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
+using ORMLibrary;
 using Services.Account.Models;
 using Services.Client.Models;
 using Services.Credit.Models;
 using Services.Deposit.Models;
 using Services.Transaction.Models;
-using ORMLibrary;
 
 namespace Services.Utilities
 {
@@ -27,7 +27,9 @@ namespace Services.Utilities
 
                 e.CreateMap<PlanOfAccount, PlanOfAccountModel>();
 
-                e.CreateMap<PlanOfCredit, PlanOfCreditModel>();
+                e.CreateMap<PlanOfCredit, PlanOfCreditModel>()
+    .ForMember(dest => dest.Currency, opt => opt.MapFrom(src => src.Currency));
+
                 e.CreateMap<PlanOfCreditModel, PlanOfCredit>()
                     .ForMember(r => r.MainPlanOfAccount, r => r.Ignore())
                     .ForMember(r => r.PercentPlanOfAccount, r => r.Ignore());

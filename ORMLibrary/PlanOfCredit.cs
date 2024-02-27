@@ -39,5 +39,7 @@ namespace ORMLibrary
         public virtual PlanOfAccount MainPlanOfAccount { get; set; }
 
         public virtual PlanOfAccount PercentPlanOfAccount { get; set; }
+        public int CurrencyId { get; set; }
+        public virtual Currency Currency { get; set; }
     }
 }

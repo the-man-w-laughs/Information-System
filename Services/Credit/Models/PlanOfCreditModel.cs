@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ORMLibrary;
 using Services.Account.Models;
 
 namespace Services.Credit.Models
@@ -19,6 +13,8 @@ namespace Services.Credit.Models
         public decimal? MinAmount { get; set; }
         public int MainAccountPlanId { get; set; }
         public int PercentAccountPlanId { get; set; }
+        public int CurrencyId { get; set; }
+        public virtual Currency Currency { get; set; }
         public virtual PlanOfAccountModel MainPlanOfAccount { get; set; }
         public virtual PlanOfAccountModel PercentPlanOfAccount { get; set; }
     }

@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.Practices.Unity;
+using ORMLibrary;
 using Services.Account;
 using Services.Credit.Models;
-using Microsoft.Practices.Unity;
-using ORMLibrary;
-using Services.Common.Model;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Services.Credit
 {

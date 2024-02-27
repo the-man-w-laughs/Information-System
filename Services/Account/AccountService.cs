@@ -63,6 +63,15 @@ namespace Services.Account
                 CreateBaseAccounts("7327", 0, 100000000000)
             });
 
+            //Context.Currencies.AddRange(new List<ORMLibrary.Currency>()
+            //{
+            //    new Currency() { Id = 1, Name = "USD", ExchangeRate = 1.00m },
+            //    new Currency() { Id = 2, Name = "EUR", ExchangeRate = 0.82m },
+            //    new Currency() { Id = 3, Name = "GBP", ExchangeRate = 0.72m },
+            //    new Currency() { Id = 4, Name = "JPY", ExchangeRate = 109.22m }
+            //});
+
+
             Context.SaveChanges();
         }
 
@@ -76,6 +85,8 @@ namespace Services.Account
                 PlanOfAccount = Context.PlanOfAccounts.FirstOrDefault(e => e.AccountNumber == accountPlanNumber),
                 AccountNumber = GenerateAccountNumber(accountPlanNumber, 0)
             };
+
+
             return account;
         }
 

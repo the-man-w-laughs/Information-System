@@ -1,13 +1,20 @@
 ﻿@model IEnumerable<WebApplication.Models.ViewModels.Client>
 
 @{
-    ViewBag.Title = "Клиенты";
+    ViewBag.Title = "Клиенты самого лучшего банка в мире";
 }
 
 <style>
+    /* Center the table and header */
+    .table-container {
+        text-align: center;
+    }
+
     table {
+        max-width: 600px;
         width: 100%;
         border-collapse: collapse;
+        margin: 0 auto; /* Center the table horizontally */
     }
 
     th, td {
@@ -26,6 +33,7 @@
         text-align: center;
     }
 
+    /* Keep the button in its original position */
     .create-button {
         background-color: white;
         border: 2px solid #4CAF50;
@@ -38,57 +46,51 @@
         margin-bottom: 10px;
         cursor: pointer;
         border-radius: 5px;
+        /* float: right; Remove this */
     }
 
-    .create-button:hover {
-        background-color: #4CAF50;
-        color: white;
-    }
-
-    .container-title {
-        display: flex;
-        justify-content:space-between;
-        margin-bottom:50px;
-    }
+        .create-button:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
 </style>
+<button class="create-button" onclick="window.location.href='@Url.Action("Create")'">Создать нового клиента</button>
+<div class="table-container">
+    <h2>Клиенты самого лучшего банка в мире</h2>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Surname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Patronymic)
+            </th>
+            <th></th>
+        </tr>
 
-<div class="container-title">
-    <h2>Клиенты</h2>
-    <button class="create-button" onclick="window.location.href='@Url.Action("Create")'">Создать нового клиента</button>
+        @foreach (var item in Model.OrderBy(o => o.Surname))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Patronymic)
+                </td>
+                <td>
+                    @Html.ActionLink("Подробнее", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </table>
 </div>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Surname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Patronymic)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model.OrderBy(o => o.Surname))
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Surname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Patronymic)
-            </td>
-            <td>
-                @Html.ActionLink("Подробнее", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
-
-</table>

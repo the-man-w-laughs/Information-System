@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<WebApplication.Models.ViewModels.Credit>
 
 @{
-    ViewBag.Title = "Договоры";
+    ViewBag.Title = "Кредиты";
 }
 <style>
     .table-container {
@@ -74,7 +74,7 @@
 </div>
 <div class="table-container">
     <div class="container-title">
-        <h2>Договоры</h2>
+        <h2>Кредиты</h2>
         <div>
             <button onclick="window.location.href='@Url.Action( "Create")'" class="btn">Создать договор</button>
             <button onclick="window.location.href='@Url.Action( "Index", "PlanOfCredit")'" class="btn">Кредитные планы</button>

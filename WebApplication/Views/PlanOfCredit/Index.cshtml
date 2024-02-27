@@ -95,6 +95,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Anuity)
             </th>
+            <th>
+                Валюта
+            </th>
             <th></th>
         </tr>
 
@@ -113,6 +116,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Anuity)
                 </td>
+                <th>
+                    @Html.DisplayFor(modelItem => item.Currency.Name)
+                </th>
             </tr>
         }
 

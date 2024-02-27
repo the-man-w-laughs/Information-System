@@ -84,39 +84,50 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "custom-input" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "custom-input" } })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.MonthPeriod, htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.MonthPeriod, new { htmlAttributes = new { @class = "custom-input" } })
-                @Html.ValidationMessageFor(model => model.MonthPeriod, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.MonthPeriod, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.MonthPeriod, new { htmlAttributes = new { @class = "custom-input" } })
+        @Html.ValidationMessageFor(model => model.MonthPeriod, "", new { @class = "text-danger" })
+    </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Percent, htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.Percent, new { htmlAttributes = new { @class = "custom-input" } })
-                @Html.ValidationMessageFor(model => model.Percent, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Percent, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.Percent, new { htmlAttributes = new { @class = "custom-input" } })
+        @Html.ValidationMessageFor(model => model.Percent, "", new { @class = "text-danger" })
+    </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Anuity, htmlAttributes: new { @class = "control-label" })
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Anuity)
-                    @Html.ValidationMessageFor(model => model.Anuity, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="center">
-                <div class="form-group">
-                    <input type="submit" value="Создать" class="btn" />
-                </div>
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Anuity, htmlAttributes: new { @class = "control-label" })
+        <div class="checkbox">
+            @Html.EditorFor(model => model.Anuity)
+            @Html.ValidationMessageFor(model => model.Anuity, "", new { @class = "text-danger" })
         </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CurrencyId, htmlAttributes: new { @class = "control-label" })
+        @Html.DropDownListFor(model => model.CurrencyId, Model.Currencies.Select(e => new SelectListItem()
+        {
+            Text = e.Name,
+            Value = e.Id.ToString(),
+        }), new { @class = "custom-input" })
+        @Html.ValidationMessageFor(model => model.CurrencyId, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="center">
+        <div class="form-group">
+            <input type="submit" value="Создать" class="btn" />
+        </div>
+    </div>
+</div>
     }
 </div>
 

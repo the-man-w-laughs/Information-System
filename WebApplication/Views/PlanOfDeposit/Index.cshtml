@@ -86,6 +86,9 @@
                 <th>@Html.DisplayNameFor(model => model.DayPeriod)</th>
                 <th>@Html.DisplayNameFor(model => model.Percent)</th>
                 <th>@Html.DisplayNameFor(model => model.Revocable)</th>
+                <th>
+                    Валюта
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -96,6 +99,9 @@
                     <td>@Html.DisplayFor(modelItem => item.DayPeriod)</td>
                     <td>@Html.DisplayFor(modelItem => item.Percent)</td>
                     <td>@Html.DisplayFor(modelItem => item.Revocable)</td>
+                    <th>
+                        @Html.DisplayFor(modelItem => item.Currency.Name)
+                    </th>
                 </tr>
             }
         </tbody>

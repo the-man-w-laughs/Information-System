@@ -22,6 +22,7 @@ namespace ORMLibrary
         public virtual DbSet<SystemInformation> SystemInformations { get; set; }
         public virtual DbSet<Place> Places { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
+        public virtual DbSet<Currency> Currencies { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -267,6 +268,18 @@ namespace ORMLibrary
             modelBuilder.Entity<Transaction>()
                 .Property(e => e.Amount)
                 .HasPrecision(19, 4);
+
+            modelBuilder.Entity<PlanOfCredit>()
+                .HasRequired(a => a.Currency)
+                .WithMany()
+                .HasForeignKey(a => a.CurrencyId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<PlanOfDeposit>()
+                 .HasRequired(a => a.Currency)
+                 .WithMany()
+                 .HasForeignKey(a => a.CurrencyId)
+                 .WillCascadeOnDelete(false);
         }
     }
 }

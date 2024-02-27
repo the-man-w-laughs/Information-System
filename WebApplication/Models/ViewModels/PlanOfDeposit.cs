@@ -1,6 +1,7 @@
-﻿using System.Web.Mvc;
-using System.ComponentModel.DataAnnotations;
+﻿using ORMLibrary;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace WebApplication.Models.ViewModels
 {
@@ -8,8 +9,6 @@ namespace WebApplication.Models.ViewModels
     {
         [HiddenInput]
         public int Id { get; set; }
-
-        public int CurrencyId { get; set; }
 
         [Required(AllowEmptyStrings = false)]
         [Display(Name = "Название")]
@@ -25,6 +24,11 @@ namespace WebApplication.Models.ViewModels
 
         [Display(Name = "Отзывной")]
         public bool Revocable { get; set; }
+
+        [Display(Name = "Валюта")]
+        public int CurrencyId { get; set; }
+        public Currency Currency { get; set; }
+        public IEnumerable<Currency> Currencies { get; set; }
 
         [HiddenInput]
         public decimal? MinAmount { get; set; }

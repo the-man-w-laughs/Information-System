@@ -1,10 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Web.Mvc;
-using AutoMapper;
+﻿using AutoMapper;
+using Microsoft.Practices.Unity;
 using Services.Deposit;
 using Services.Deposit.Models;
-using Microsoft.Practices.Unity;
+using System;
+using System.Linq;
+using System.Web.Mvc;
 using WebApplication.Infrastructure;
 using WebApplication.Models.ViewModels;
 
@@ -14,6 +14,10 @@ namespace WebApplication.Controllers
     {
         [Dependency]
         public IPlanOfDepositService PlanService { get; set; }
+        [Dependency]
+
+        public ORMLibrary.AppContext AppContext { get; set; }
+
 
         public IMapper Mapper { get; set; } = MappingRegistrar.CreareMapper();
 
@@ -26,7 +30,8 @@ namespace WebApplication.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return View(new PlanOfDeposit());
+            var currencies = AppContext.Currencies.ToList();
+            return View(new PlanOfDeposit() { Currencies = currencies });
         }
 
         [HttpPost]
@@ -39,7 +44,7 @@ namespace WebApplication.Controllers
                     PlanService.Create(Mapper.Map<PlanOfDeposit, PlanOfDepositModel>(plan));
                     return RedirectToAction("Index");
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     ModelState.AddModelError("", ex.Message);
                     return View(plan);
